@@ -1,5 +1,4 @@
-# Generating the requested HTML code file directly
-html_code = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -1204,7 +1203,7 @@ html_code = """<!DOCTYPE html>
 
             <!-- Grid de Produtos -->
             <div class="products-grid" id="productsGrid">
-                <!-- Inserido dinamicamente via JS -->
+                <!-- Produtos carregados em tempo real via Firebase -->
             </div>
         </div>
     </section>
@@ -1339,101 +1338,77 @@ html_code = """<!DOCTYPE html>
         </div>
     </footer>
 
-    <!-- ================= JAVASCRIPT ================= -->
-    <script>
-        /* 1. BASE DE DADOS DOS PRODUTOS */
-        const products = [
-            {
-                id: 1,
-                name: "King Whey 100% Pure 900g",
-                category: "massa",
-                categoryLabel: "Massa Muscular",
-                price: 149.90,
-                oldPrice: 189.90,
-                rating: 5,
-                image: "https://cdn-icons-png.flaticon.com/512/2874/2874780.png",
-                badge: "MAIS VENDIDO",
-                desc: "Proteína de altíssimo valor biológico, extraída do soro do leite concentrado. Auxilia diretamente na construção, reparo e síntese de massa muscular."
-            },
-            {
-                id: 2,
-                name: "Pré-Treino Blood Rage 300g",
-                category: "pre-treino",
-                categoryLabel: "Pré-Treinos",
-                price: 119.90,
-                oldPrice: 149.90,
-                rating: 5,
-                image: "https://cdn-icons-png.flaticon.com/512/2874/2874797.png",
-                badge: "HARDCORE",
-                desc: "Fórmula de explosão máxima com 400mg de Cafeína, Beta-Alanina e Arginina. Foco insano e vascularização extrema do início ao fim."
-            },
-            {
-                id: 3,
-                name: "Creatina Monohidratada 100% Pure 300g",
-                category: "massa",
-                categoryLabel: "Massa Muscular",
-                price: 99.90,
-                oldPrice: 129.90,
-                rating: 5,
-                image: "https://cdn-icons-png.flaticon.com/512/2874/2874808.png",
-                badge: "PURÍSSIMA",
-                desc: "Creatina micronizada e monohidratada com grau máximo de pureza. Aumento garantido de força bruta, volume muscular e rápida síntese de ATP."
-            },
-            {
-                id: 4,
-                name: "Termogênico King Cut Black 60 Caps",
-                category: "emagrecimento",
-                categoryLabel: "Emagrecimento",
-                price: 89.90,
-                oldPrice: 109.90,
-                rating: 4,
-                image: "https://cdn-icons-png.flaticon.com/512/2874/2874789.png",
-                badge: "OFERTA",
-                desc: "Acelerador metabólico com fórmula termogênica sinérgica. Auxilia na queima rápida de gordura corporal mantendo a definição dos músculos."
-            },
-            {
-                id: 5,
-                name: "Multivitamínico Alfa King 90 Caps",
-                category: "vitaminas",
-                categoryLabel: "Vitaminas & Saúde",
-                price: 59.90,
-                oldPrice: 79.90,
-                rating: 5,
-                image: "https://cdn-icons-png.flaticon.com/512/2874/2874821.png",
-                badge: "ESSENCIAL",
-                desc: "Suporte completo de micronutrientes com 22 vitaminas e minerais biodisponíveis para fortalecer o sistema imunológico e a recuperação muscular."
-            },
-            {
-                id: 6,
-                name: "BCAA Powder Ultra 8:1:1 300g",
-                category: "massa",
-                categoryLabel: "Massa Muscular",
-                price: 79.90,
-                oldPrice: 99.90,
-                rating: 4,
-                image: "https://cdn-icons-png.flaticon.com/512/2874/2874780.png",
-                badge: "ANTI-CATABÓLICO",
-                desc: "Aminoácidos de cadeia ramificada em alta concentração de Leucina. Evita o catabolismo muscular e acelera a regeneração de tecidos."
+    <!-- ================= JAVASCRIPT + CONEXÃO FIREBASE ================= -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Configuração original do seu Firebase
+        const firebaseConfig = { 
+            apiKey: "AIzaSyAqbsFZB0JT89x7Nio70x0QkAPxqxz3SK4", 
+            authDomain: "powerkingsuplementos.firebaseapp.com", 
+            databaseURL: "https://powerkingsuplementos-default-rtdb.firebaseio.com",
+            projectId: "powerkingsuplementos", 
+            storageBucket: "powerkingsuplementos.firebasestorage.app", 
+            messagingSenderId: "582983617567", 
+            appId: "1:582983617567:web:c701a9239b007b3a88d92a" 
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const produtosRef = ref(db, 'produtos');
+
+        let products = [];
+        let currentFilter = 'all';
+
+        // Escuta em tempo real as atualizações do seu painel ADM
+        onValue(produtosRef, (snapshot) => {
+            const data = snapshot.val();
+            products = [];
+
+            if (data) {
+                Object.keys(data).forEach(key => {
+                    const item = data[key];
+                    const numPrice = parseFloat(item.preco) || 0;
+                    
+                    products.push({
+                        id: key,
+                        name: item.nome || "Produto sem nome",
+                        category: item.categoria || "massa",
+                        categoryLabel: item.categoria ? item.categoria.toUpperCase() : "SUPLEMENTOS",
+                        price: numPrice,
+                        oldPrice: numPrice > 0 ? numPrice * 1.2 : 0, // Cálculo visual de desconto
+                        rating: 5,
+                        image: item.imagem || 'https://via.placeholder.com/300?text=Sem+Imagem',
+                        badge: item.badge || "DESTAQUE",
+                        desc: item.descricao || "Suplemento de alta qualidade para otimização dos seus resultados."
+                    });
+                });
             }
-        ];
 
-        let cart = [];
+            aplicarFiltro();
+        });
 
-        /* 2. RENDERIZAÇÃO DOS PRODUTOS COM CALCULADORA DE FRETE */
         const productsGrid = document.getElementById('productsGrid');
 
         function renderProducts(items) {
             productsGrid.innerHTML = '';
+
+            if (items.length === 0) {
+                productsGrid.innerHTML = '<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1; padding: 40px 0;">Nenhum produto cadastrado no painel.</p>';
+                return;
+            }
+
             items.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
                     <span class="product-badge">${product.badge}</span>
-                    <div class="product-img-wrap" onclick="openProductModal(${product.id})">
+                    <div class="product-img-wrap" onclick="openProductModal('${product.id}')">
                         <img src="${product.image}" alt="${product.name}">
                     </div>
                     <span class="product-category">${product.categoryLabel}</span>
-                    <h3 class="product-title" onclick="openProductModal(${product.id})">${product.name}</h3>
+                    <h3 class="product-title" onclick="openProductModal('${product.id}')">${product.name}</h3>
                     <div class="product-rating">
                         ${'<i class="fa-solid fa-star"></i>'.repeat(product.rating)}
                     </div>
@@ -1443,7 +1418,7 @@ html_code = """<!DOCTYPE html>
                         <label><i class="fa-solid fa-truck"></i> Calcule o Frete:</label>
                         <div class="shipping-input-group">
                             <input type="text" id="cep-${product.id}" placeholder="Digite CEP ou Cidade" maxlength="25">
-                            <button onclick="calculateShipping(${product.id})">OK</button>
+                            <button onclick="calculateShipping('${product.id}')">OK</button>
                         </div>
                         <div class="shipping-result" id="ship-result-${product.id}"></div>
                     </div>
@@ -1455,11 +1430,11 @@ html_code = """<!DOCTYPE html>
                         </div>
                         <div class="qty-and-cart">
                             <div class="qty-selector">
-                                <button class="qty-btn" onclick="adjustQty(${product.id}, -1)">-</button>
+                                <button class="qty-btn" onclick="adjustQty('${product.id}', -1)">-</button>
                                 <input type="text" class="qty-input" id="qty-${product.id}" value="1" readonly>
-                                <button class="qty-btn" onclick="adjustQty(${product.id}, 1)">+</button>
+                                <button class="qty-btn" onclick="adjustQty('${product.id}', 1)">+</button>
                             </div>
-                            <button class="btn-add-cart" onclick="addToCart(${product.id})">
+                            <button class="btn-add-cart" onclick="addToCart('${product.id}')">
                                 <i class="fa-solid fa-cart-plus"></i> Comprar
                             </button>
                         </div>
@@ -1469,8 +1444,17 @@ html_code = """<!DOCTYPE html>
             });
         }
 
+        function aplicarFiltro() {
+            if (currentFilter === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category.toLowerCase() === currentFilter.toLowerCase());
+                renderProducts(filtered);
+            }
+        }
+
         /* LÓGICA DA CALCULADORA DE FRETE */
-        function calculateShipping(productId) {
+        window.calculateShipping = (productId) => {
             const input = document.getElementById(`cep-${productId}`).value.trim().toLowerCase();
             const resultDiv = document.getElementById(`ship-result-${productId}`);
 
@@ -1480,7 +1464,6 @@ html_code = """<!DOCTYPE html>
                 return;
             }
 
-            // Se contiver paulinia ou faixas de CEP de Paulínia (13140-000 a 13149-999)
             const cleanInput = input.replace(/\D/g, '');
             const isPauliniaCep = cleanInput.length === 8 && cleanInput.startsWith('1314');
 
@@ -1491,43 +1474,38 @@ html_code = """<!DOCTYPE html>
                 resultDiv.className = "shipping-result paid";
                 resultDiv.innerHTML = '<i class="fa-solid fa-truck-ramp-box"></i> Frete Fixo Região: <strong>R$ 14,90</strong> (24h a 48h)';
             }
-        }
+        };
 
-        /* 3. SISTEMA DE FILTRAGEM */
+        /* SISTEMA DE FILTRAGEM */
         const filterBtns = document.querySelectorAll('.filter-btn');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
-                const filter = btn.dataset.filter;
-                if (filter === 'all') {
-                    renderProducts(products);
-                } else {
-                    const filtered = products.filter(p => p.category === filter);
-                    renderProducts(filtered);
-                }
+                currentFilter = btn.dataset.filter;
+                aplicarFiltro();
             });
         });
 
-        /* 4. NAUVEGAÇÃO SUAVE DOS LINKS DO HEADER */
+        /* NAVEGAÇÃO SUAVE */
         document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function() {
                 document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
                 this.classList.add('active');
             });
         });
 
-        /* 5. CONTROLE DE QUANTIDADE NOS CARDS */
-        function adjustQty(productId, change) {
+        /* CONTROLE DE QUANTIDADE */
+        window.adjustQty = (productId, change) => {
             const qtyInput = document.getElementById(`qty-${productId}`);
             let currentQty = parseInt(qtyInput.value);
             currentQty += change;
             if (currentQty < 1) currentQty = 1;
             qtyInput.value = currentQty;
-        }
+        };
 
-        /* 6. SISTEMA DO CARRINHO */
+        /* SISTEMA DO CARRINHO */
+        let cart = [];
         const cartDrawer = document.getElementById('cartDrawer');
         const cartOverlay = document.getElementById('cartOverlay');
         const openCartBtn = document.getElementById('openCartBtn');
@@ -1550,8 +1528,10 @@ html_code = """<!DOCTYPE html>
             }
         }
 
-        function addToCart(productId, customQty = null) {
+        window.addToCart = (productId, customQty = null) => {
             const product = products.find(p => p.id === productId);
+            if(!product) return;
+
             const qtyInput = document.getElementById(`qty-${productId}`);
             const quantity = customQty || (qtyInput ? parseInt(qtyInput.value) : 1);
 
@@ -1564,12 +1544,12 @@ html_code = """<!DOCTYPE html>
 
             updateCartUI();
             toggleCart(true);
-        }
+        };
 
-        function removeFromCart(productId) {
+        window.removeFromCart = (productId) => {
             cart = cart.filter(item => item.id !== productId);
             updateCartUI();
-        }
+        };
 
         function updateCartUI() {
             cartItemsContainer.innerHTML = '';
@@ -1592,7 +1572,7 @@ html_code = """<!DOCTYPE html>
                         <div class="cart-item-title">${item.name}</div>
                         <div class="cart-item-price">R$ ${item.price.toFixed(2)} x ${item.quantity}</div>
                     </div>
-                    <button class="remove-item" onclick="removeFromCart(${item.id})">
+                    <button class="remove-item" onclick="removeFromCart('${item.id}')">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 `;
@@ -1603,13 +1583,15 @@ html_code = """<!DOCTYPE html>
             cartTotal.innerText = `R$ ${total.toFixed(2)}`;
         }
 
-        /* 7. MODAL DO PRODUTO */
+        /* MODAL DO PRODUTO */
         const productModal = document.getElementById('productModal');
         const closeModalBtn = document.getElementById('closeModalBtn');
         let currentModalProductId = null;
 
-        function openProductModal(productId) {
+        window.openProductModal = (productId) => {
             const product = products.find(p => p.id === productId);
+            if(!product) return;
+
             currentModalProductId = productId;
             
             document.getElementById('modalImg').src = product.image;
@@ -1619,18 +1601,18 @@ html_code = """<!DOCTYPE html>
             document.getElementById('modalPrice').innerText = `R$ ${product.price.toFixed(2)}`;
 
             productModal.classList.add('active');
-        }
+        };
 
         closeModalBtn.onclick = () => productModal.classList.remove('active');
         document.getElementById('modalAddCartBtn').onclick = () => {
             if (currentModalProductId) {
-                addToCart(currentModalProductId, 1);
+                window.addToCart(currentModalProductId, 1);
                 productModal.classList.remove('active');
             }
         };
 
-        /* 8. CHECKOUT WHATSAPP COM NÚMERO OFICIAL */
-        function checkoutWhatsApp() {
+        /* CHECKOUT WHATSAPP */
+        window.checkoutWhatsApp = () => {
             if (cart.length === 0) {
                 alert('Seu carrinho está vazio!');
                 return;
@@ -1648,12 +1630,12 @@ html_code = """<!DOCTYPE html>
             message += `\n*Total:* R$ ${total.toFixed(2)}`;
             message += `\n\nPor favor, confirmem a disponibilidade e forma de envio/pagamento!`;
 
-            const phone = "5519993665330"; // Número oficial solicitado
+            const phone = "5519993665330"; 
             const encodedUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
             window.open(encodedUrl, '_blank');
-        }
+        };
 
-        /* 9. CARROSSEL DE BANNERS */
+        /* CARROSSEL DE BANNERS */
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
 
@@ -1676,15 +1658,6 @@ html_code = """<!DOCTYPE html>
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
         }, 5000);
-
-        // Renderização Inicial
-        renderProducts(products);
     </script>
 </body>
 </html>
-"""
-
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_code)
-
-print("Arquivo index.html gerado com sucesso!")
