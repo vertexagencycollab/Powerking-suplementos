@@ -1,0 +1,1690 @@
+# Generating the requested HTML code file directly
+html_code = """<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POWER KING SUPLEMENTOS | Performance & Nutrição de Elite</title>
+    <!-- Fontes Google (Montserrat & Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           1. VARIÁVEIS DE DESIGN & ESTILOS GERAIS
+           ========================================== */
+        :root {
+            --bg-main: #0a0a0c;
+            --bg-card: #121318;
+            --bg-card-hover: #1a1c23;
+            --gold-primary: #f5b000;
+            --gold-light: #ffd700;
+            --gold-dark: #b8860b;
+            --gold-gradient: linear-gradient(135deg, #ffd700 0%, #f5b000 50%, #b8860b 100%);
+            --text-main: #f4f4f6;
+            --text-muted: #a0a0ab;
+            --border-color: rgba(245, 176, 0, 0.25);
+            --shadow-gold: 0 10px 30px rgba(245, 176, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 4px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==========================================
+           2. HEADER & NAVEGAÇÃO
+           ========================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 12, 0.92);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 95px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(245, 176, 0, 0.4));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .logo-text h1 span {
+            color: var(--gold-primary);
+        }
+
+        .logo-text span.sub {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--gold-primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gold-gradient);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-social-header {
+            background: rgba(245, 176, 0, 0.1);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-social-header i {
+            font-size: 1.1rem;
+            background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-social-header:hover {
+            background: var(--gold-primary);
+            color: #000;
+            border-color: var(--gold-primary);
+        }
+
+        .btn-social-header:hover i {
+            -webkit-text-fill-color: #000;
+        }
+
+        .cart-icon-btn {
+            background: rgba(245, 176, 0, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--gold-primary);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .cart-icon-btn:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 15px rgba(245, 176, 0, 0.5);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff3b3b;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ==========================================
+           3. HERO CARROSSEL
+           ========================================== */
+        .hero {
+            margin-top: 95px;
+            position: relative;
+            height: 550px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-1 {
+            background-image: linear-gradient(90deg, rgba(10,10,12,0.95) 25%, rgba(10,10,12,0.5) 100%), url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .slide-2 {
+            background-image: linear-gradient(90deg, rgba(10,10,12,0.95) 25%, rgba(10,10,12,0.5) 100%), url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .hero-caption {
+            max-width: 650px;
+            transform: translateY(30px);
+            transition: transform 0.8s ease;
+        }
+
+        .slide.active .hero-caption {
+            transform: translateY(0);
+        }
+
+        .tag-highlight {
+            background: var(--gold-gradient);
+            color: #000;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero h2 {
+            font-size: 3.2rem;
+            line-height: 1.1;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 span {
+            color: var(--gold-primary);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            font-weight: 800;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(245, 176, 0, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 176, 0, 0.6);
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 50px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-btn:hover {
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        /* ==========================================
+           4. BARRA DE BENEFÍCIOS
+           ========================================== */
+        .features-bar {
+            background: #0f1015;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 30px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--gold-primary);
+        }
+
+        .feature-item h4 {
+            font-size: 0.95rem;
+            color: #fff;
+        }
+
+        .feature-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================
+           5. FILTRAGEM & PRODUTOS
+           ========================================== */
+        .shop-section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gold-gradient);
+            color: #000;
+            box-shadow: 0 0 15px rgba(245, 176, 0, 0.4);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            position: relative;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+            box-shadow: var(--shadow-gold);
+            background: var(--bg-card-hover);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #e63946;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        .product-img-wrap {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .product-img-wrap img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            cursor: pointer;
+            line-height: 1.3;
+        }
+
+        .product-title:hover {
+            color: var(--gold-primary);
+        }
+
+        .product-rating {
+            color: var(--gold-primary);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* Calculadora de Frete nos Cards */
+        .shipping-calc-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .shipping-calc-box label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .shipping-input-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .shipping-input-group input {
+            flex: 1;
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: #fff;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        .shipping-input-group button {
+            background: var(--gold-primary);
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .shipping-input-group button:hover {
+            background: #fff;
+        }
+
+        .shipping-result {
+            font-size: 0.75rem;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .shipping-result.free {
+            color: #25d366;
+        }
+
+        .shipping-result.paid {
+            color: var(--gold-light);
+        }
+
+        .price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .price-old {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .price-current {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .qty-and-cart {
+            display: flex;
+            gap: 10px;
+        }
+
+        .qty-selector {
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            width: 30px;
+            height: 38px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .qty-btn:hover {
+            background: var(--gold-primary);
+            color: #000;
+        }
+
+        .qty-input {
+            width: 35px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--gold-gradient);
+            color: #000;
+            box-shadow: 0 0 10px rgba(245, 176, 0, 0.4);
+        }
+
+        /* ==========================================
+           6. SEÇÃO SOBRE NÓS
+           ========================================== */
+        .about-section {
+            padding: 80px 0;
+            background: #0f1015;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content h2 span {
+            color: var(--gold-primary);
+        }
+
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .highlight-item {
+            background: rgba(255,255,255,0.02);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid var(--gold-primary);
+        }
+
+        .highlight-item h4 {
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .highlight-item p {
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+
+        /* ==========================================
+           7. DRAWER DO CARRINHO
+           ========================================== */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: var(--bg-card);
+            z-index: 2001;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 25px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--gold-primary);
+        }
+
+        .cart-body {
+            padding: 25px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--gold-primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .remove-item {
+            color: #ff4757;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px;
+        }
+
+        .cart-footer {
+            padding: 25px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .cart-total-box {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 15px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .btn-checkout:hover {
+            background: #1eb954;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ==========================================
+           8. MODAL PRODUTO DETALHADO
+           ========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .modal-img {
+            background: rgba(0,0,0,0.3);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-img img {
+            max-width: 100%;
+            max-height: 280px;
+            object-fit: contain;
+        }
+
+        .modal-details {
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-details h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-details p.desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .flavor-select {
+            margin-bottom: 15px;
+        }
+
+        .flavor-select label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--gold-primary);
+        }
+
+        .flavor-select select {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        /* ==========================================
+           9. FOOTER
+           ========================================== */
+        footer {
+            background: #050507;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn-insta {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+            transition: var(--transition);
+        }
+
+        .social-btn-insta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 39, 67, 0.6);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .modal-container { grid-template-columns: 1fr; }
+            .modal-img { padding: 20px; }
+            .modal-details { padding: 25px; }
+            nav { display: none; }
+            .hero h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="container header-content">
+            <a href="#home" class="logo-area">
+                <img src="logo.jpg" alt="Power King Suplementos" class="logo-img" onerror="this.onerror=null; this.src='logo.png';">
+                <div class="logo-text">
+                    <h1>POWER <span>KING</span></h1>
+                    <span class="sub">SUPLEMENTOS</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Início</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#categorias">Categorias</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://www.instagram.com/powerkingsuplementos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="btn-social-header">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <button class="cart-icon-btn" id="openCartBtn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-count" id="cartBadge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= HERO CARROSSEL ================= -->
+    <section class="hero" id="home">
+        <div class="slide slide-1 active">
+            <div class="container">
+                <div class="hero-caption">
+                    <span class="tag-highlight"><i class="fa-solid fa-crown"></i> SUPLEMENTAÇÃO DE ELITE</span>
+                    <h2>DESPERTE O <span>REI</span> DENTRO DE VOCÊ</h2>
+                    <p>Fórmulas de altíssima pureza projetadas para quem não aceita nada além do topo do pódio.</p>
+                    <a href="#produtos" class="btn-gold">Explorar Arsenal <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="slide slide-2">
+            <div class="container">
+                <div class="hero-caption">
+                    <span class="tag-highlight"><i class="fa-solid fa-truck-fast"></i> PAULÍNIA & REGIÃO</span>
+                    <h2>FRETE GRÁTIS EM <span>PAULÍNIA</span></h2>
+                    <p>Entregamos seus suplementos com rapidez total. Calcule o frete direto na página do produto.</p>
+                    <a href="#produtos" class="btn-gold">Comprar Agora <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-controls">
+            <button class="slider-btn" id="prevSlide"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-btn" id="nextSlide"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- ================= TRUST BADGES ================= -->
+    <section class="features-bar">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>Frete Grátis Paulínia</h4>
+                        <p>Entrega rápida na sua porta</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>
+                        <h4>100% Originais</h4>
+                        <p>Laudo de pureza garantido</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div>
+                        <h4>Pedido via WhatsApp</h4>
+                        <p>Atendimento direto e prático</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <i class="fa-solid fa-bolt"></i>
+                    <div>
+                        <h4>Envio Imediato</h4>
+                        <p>Produtos à pronta entrega</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SEÇÃO DE PRODUTOS ================= -->
+    <section class="shop-section" id="produtos">
+        <div class="container">
+            <div class="section-header">
+                <h2>ARSENAL DE <span>SUPLEMENTOS</span></h2>
+                <p>Navegue pelas categorias e escolha a melhor nutrição para a sua meta</p>
+            </div>
+
+            <!-- Botões de Filtragem -->
+            <div class="filter-buttons" id="categorias">
+                <button class="filter-btn active" data-filter="all">Todos os Produtos</button>
+                <button class="filter-btn" data-filter="massa">Massa Muscular</button>
+                <button class="filter-btn" data-filter="pre-treino">Pré-Treinos</button>
+                <button class="filter-btn" data-filter="emagrecimento">Emagrecimento</button>
+                <button class="filter-btn" data-filter="vitaminas">Vitaminas & Saúde</button>
+            </div>
+
+            <!-- Grid de Produtos -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SOBRE NÓS ================= -->
+    <section class="about-section" id="sobre">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Power King Suplementos">
+                </div>
+                <div class="about-content">
+                    <h2>SOBRE A <span>POWER KING</span></h2>
+                    <p>A <strong>Power King Suplementos</strong> nasceu com o objetivo firme de transformar o mercado de nutrição esportiva, oferecendo apenas produtos de altíssima performance, com procedência garantida e resultados reais.</p>
+                    <p>Nossa missão é abastecer atletas, marombeiros e entusiastas do fitness com a verdadeira suplementação de elite, unindo atendimento personalizado, suporte técnico e entregas ultra rápidas.</p>
+                    
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <h4>Compromisso Real</h4>
+                            <p>Garantia de matérias-primas importadas e laudos de qualidade.</p>
+                        </div>
+                        <div class="highlight-item">
+                            <h4>Atendimento Rei</h4>
+                            <p>Suporte direto no WhatsApp para tirar todas as dúvidas.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <a href="https://wa.me/5519993665330?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida!" target="_blank" class="btn-gold">
+                            <i class="fa-brands fa-whatsapp"></i> Falar com um Especialista
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DRAWER DO CARRINHO ================= -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping" style="color:var(--gold-primary)"></i> Seu Carrinho</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <!-- Itens do Carrinho via JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-box">
+                <span>Total:</span>
+                <span id="cartTotal" style="color:var(--gold-primary)">R$ 0,00</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL DETALHES ================= -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-container">
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+            <div class="modal-img">
+                <img id="modalImg" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <span class="product-category" id="modalCategory">Categoria</span>
+                <h3 id="modalTitle">Nome do Produto</h3>
+                <p class="desc" id="modalDesc">Descrição técnica do produto...</p>
+                
+                <div class="flavor-select">
+                    <label>Escolha o Sabor:</label>
+                    <select id="modalFlavor">
+                        <option>Chocolate Suíço</option>
+                        <option>Baunilha Gourmet</option>
+                        <option>Morango Silvestre</option>
+                        <option>Cookies & Cream</option>
+                        <option>Natural / Sem Sabor</option>
+                    </select>
+                </div>
+
+                <div class="price-box">
+                    <span class="price-current" id="modalPrice">R$ 0,00</span>
+                </div>
+
+                <button class="btn-gold" id="modalAddCartBtn" style="width:100%">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#home" class="logo-area" style="margin-bottom:15px;">
+                        <img src="logo.jpg" alt="Power King" class="logo-img" style="height:50px;" onerror="this.onerror=null; this.src='logo.png';">
+                        <div class="logo-text">
+                            <h1>POWER <span>KING</span></h1>
+                        </div>
+                    </a>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">O ápice em suplementação esportiva. Sinta o verdadeiro poder da nutrição de alta performance.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#categorias">Categorias</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Atendimento</h4>
+                    <ul>
+                        <li><a href="https://wa.me/5519993665330" target="_blank"><i class="fa-brands fa-whatsapp"></i> (19) 99366-5330</a></li>
+                        <li><a href="#">Paulínia - SP</a></li>
+                        <li><a href="#">Segunda a Sábado: 8h às 20h</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Rede Oficial</h4>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:15px;">Siga nosso perfil e fique por dentro das novidades e promoções exclusivas!</p>
+                    <a href="https://www.instagram.com/powerkingsuplementos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn-insta">
+                        <i class="fa-brands fa-instagram" style="font-size:1.3rem;"></i> @powerkingsuplementos
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 POWER KING SUPLEMENTOS. Todos os direitos reservados. Frete Grátis em Paulínia-SP.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        /* 1. BASE DE DADOS DOS PRODUTOS */
+        const products = [
+            {
+                id: 1,
+                name: "King Whey 100% Pure 900g",
+                category: "massa",
+                categoryLabel: "Massa Muscular",
+                price: 149.90,
+                oldPrice: 189.90,
+                rating: 5,
+                image: "https://cdn-icons-png.flaticon.com/512/2874/2874780.png",
+                badge: "MAIS VENDIDO",
+                desc: "Proteína de altíssimo valor biológico, extraída do soro do leite concentrado. Auxilia diretamente na construção, reparo e síntese de massa muscular."
+            },
+            {
+                id: 2,
+                name: "Pré-Treino Blood Rage 300g",
+                category: "pre-treino",
+                categoryLabel: "Pré-Treinos",
+                price: 119.90,
+                oldPrice: 149.90,
+                rating: 5,
+                image: "https://cdn-icons-png.flaticon.com/512/2874/2874797.png",
+                badge: "HARDCORE",
+                desc: "Fórmula de explosão máxima com 400mg de Cafeína, Beta-Alanina e Arginina. Foco insano e vascularização extrema do início ao fim."
+            },
+            {
+                id: 3,
+                name: "Creatina Monohidratada 100% Pure 300g",
+                category: "massa",
+                categoryLabel: "Massa Muscular",
+                price: 99.90,
+                oldPrice: 129.90,
+                rating: 5,
+                image: "https://cdn-icons-png.flaticon.com/512/2874/2874808.png",
+                badge: "PURÍSSIMA",
+                desc: "Creatina micronizada e monohidratada com grau máximo de pureza. Aumento garantido de força bruta, volume muscular e rápida síntese de ATP."
+            },
+            {
+                id: 4,
+                name: "Termogênico King Cut Black 60 Caps",
+                category: "emagrecimento",
+                categoryLabel: "Emagrecimento",
+                price: 89.90,
+                oldPrice: 109.90,
+                rating: 4,
+                image: "https://cdn-icons-png.flaticon.com/512/2874/2874789.png",
+                badge: "OFERTA",
+                desc: "Acelerador metabólico com fórmula termogênica sinérgica. Auxilia na queima rápida de gordura corporal mantendo a definição dos músculos."
+            },
+            {
+                id: 5,
+                name: "Multivitamínico Alfa King 90 Caps",
+                category: "vitaminas",
+                categoryLabel: "Vitaminas & Saúde",
+                price: 59.90,
+                oldPrice: 79.90,
+                rating: 5,
+                image: "https://cdn-icons-png.flaticon.com/512/2874/2874821.png",
+                badge: "ESSENCIAL",
+                desc: "Suporte completo de micronutrientes com 22 vitaminas e minerais biodisponíveis para fortalecer o sistema imunológico e a recuperação muscular."
+            },
+            {
+                id: 6,
+                name: "BCAA Powder Ultra 8:1:1 300g",
+                category: "massa",
+                categoryLabel: "Massa Muscular",
+                price: 79.90,
+                oldPrice: 99.90,
+                rating: 4,
+                image: "https://cdn-icons-png.flaticon.com/512/2874/2874780.png",
+                badge: "ANTI-CATABÓLICO",
+                desc: "Aminoácidos de cadeia ramificada em alta concentração de Leucina. Evita o catabolismo muscular e acelera a regeneração de tecidos."
+            }
+        ];
+
+        let cart = [];
+
+        /* 2. RENDERIZAÇÃO DOS PRODUTOS COM CALCULADORA DE FRETE */
+        const productsGrid = document.getElementById('productsGrid');
+
+        function renderProducts(items) {
+            productsGrid.innerHTML = '';
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <span class="product-badge">${product.badge}</span>
+                    <div class="product-img-wrap" onclick="openProductModal(${product.id})">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <span class="product-category">${product.categoryLabel}</span>
+                    <h3 class="product-title" onclick="openProductModal(${product.id})">${product.name}</h3>
+                    <div class="product-rating">
+                        ${'<i class="fa-solid fa-star"></i>'.repeat(product.rating)}
+                    </div>
+                    
+                    <!-- CALCULADORA DE FRETE -->
+                    <div class="shipping-calc-box">
+                        <label><i class="fa-solid fa-truck"></i> Calcule o Frete:</label>
+                        <div class="shipping-input-group">
+                            <input type="text" id="cep-${product.id}" placeholder="Digite CEP ou Cidade" maxlength="25">
+                            <button onclick="calculateShipping(${product.id})">OK</button>
+                        </div>
+                        <div class="shipping-result" id="ship-result-${product.id}"></div>
+                    </div>
+
+                    <div class="product-bottom">
+                        <div class="price-box">
+                            <span class="price-old">R$ ${product.oldPrice.toFixed(2)}</span>
+                            <span class="price-current">R$ ${product.price.toFixed(2)}</span>
+                        </div>
+                        <div class="qty-and-cart">
+                            <div class="qty-selector">
+                                <button class="qty-btn" onclick="adjustQty(${product.id}, -1)">-</button>
+                                <input type="text" class="qty-input" id="qty-${product.id}" value="1" readonly>
+                                <button class="qty-btn" onclick="adjustQty(${product.id}, 1)">+</button>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToCart(${product.id})">
+                                <i class="fa-solid fa-cart-plus"></i> Comprar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(card);
+            });
+        }
+
+        /* LÓGICA DA CALCULADORA DE FRETE */
+        function calculateShipping(productId) {
+            const input = document.getElementById(`cep-${productId}`).value.trim().toLowerCase();
+            const resultDiv = document.getElementById(`ship-result-${productId}`);
+
+            if (!input) {
+                resultDiv.className = "shipping-result";
+                resultDiv.innerText = "Por favor, digite seu CEP ou cidade.";
+                return;
+            }
+
+            // Se contiver paulinia ou faixas de CEP de Paulínia (13140-000 a 13149-999)
+            const cleanInput = input.replace(/\D/g, '');
+            const isPauliniaCep = cleanInput.length === 8 && cleanInput.startsWith('1314');
+
+            if (input.includes('paulinia') || input.includes('paulínia') || isPauliniaCep) {
+                resultDiv.className = "shipping-result free";
+                resultDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i> <strong>FRETE GRÁTIS</strong> para Paulínia!';
+            } else {
+                resultDiv.className = "shipping-result paid";
+                resultDiv.innerHTML = '<i class="fa-solid fa-truck-ramp-box"></i> Frete Fixo Região: <strong>R$ 14,90</strong> (24h a 48h)';
+            }
+        }
+
+        /* 3. SISTEMA DE FILTRAGEM */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                if (filter === 'all') {
+                    renderProducts(products);
+                } else {
+                    const filtered = products.filter(p => p.category === filter);
+                    renderProducts(filtered);
+                }
+            });
+        });
+
+        /* 4. NAUVEGAÇÃO SUAVE DOS LINKS DO HEADER */
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        /* 5. CONTROLE DE QUANTIDADE NOS CARDS */
+        function adjustQty(productId, change) {
+            const qtyInput = document.getElementById(`qty-${productId}`);
+            let currentQty = parseInt(qtyInput.value);
+            currentQty += change;
+            if (currentQty < 1) currentQty = 1;
+            qtyInput.value = currentQty;
+        }
+
+        /* 6. SISTEMA DO CARRINHO */
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartBadge = document.getElementById('cartBadge');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+
+        openCartBtn.onclick = () => toggleCart(true);
+        closeCartBtn.onclick = () => toggleCart(false);
+        cartOverlay.onclick = () => toggleCart(false);
+
+        function toggleCart(open) {
+            if (open) {
+                cartDrawer.classList.add('active');
+                cartOverlay.classList.add('active');
+            } else {
+                cartDrawer.classList.remove('active');
+                cartOverlay.classList.remove('active');
+            }
+        }
+
+        function addToCart(productId, customQty = null) {
+            const product = products.find(p => p.id === productId);
+            const qtyInput = document.getElementById(`qty-${productId}`);
+            const quantity = customQty || (qtyInput ? parseInt(qtyInput.value) : 1);
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({ ...product, quantity });
+            }
+
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalItems = 0;
+
+            if(cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">Seu carrinho está vazio.</p>';
+            }
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                totalItems += item.quantity;
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">R$ ${item.price.toFixed(2)} x ${item.quantity}</div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${item.id})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            cartBadge.innerText = totalItems;
+            cartTotal.innerText = `R$ ${total.toFixed(2)}`;
+        }
+
+        /* 7. MODAL DO PRODUTO */
+        const productModal = document.getElementById('productModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        let currentModalProductId = null;
+
+        function openProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            currentModalProductId = productId;
+            
+            document.getElementById('modalImg').src = product.image;
+            document.getElementById('modalCategory').innerText = product.categoryLabel;
+            document.getElementById('modalTitle').innerText = product.name;
+            document.getElementById('modalDesc').innerText = product.desc;
+            document.getElementById('modalPrice').innerText = `R$ ${product.price.toFixed(2)}`;
+
+            productModal.classList.add('active');
+        }
+
+        closeModalBtn.onclick = () => productModal.classList.remove('active');
+        document.getElementById('modalAddCartBtn').onclick = () => {
+            if (currentModalProductId) {
+                addToCart(currentModalProductId, 1);
+                productModal.classList.remove('active');
+            }
+        };
+
+        /* 8. CHECKOUT WHATSAPP COM NÚMERO OFICIAL */
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+
+            let message = "Olá, POWER KING! Gostaria de finalizar meu pedido pelo site:\n\n";
+            let total = 0;
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                message += `• *${item.name}* (x${item.quantity}) - R$ ${subtotal.toFixed(2)}\n`;
+            });
+
+            message += `\n*Total:* R$ ${total.toFixed(2)}`;
+            message += `\n\nPor favor, confirmem a disponibilidade e forma de envio/pagamento!`;
+
+            const phone = "5519993665330"; // Número oficial solicitado
+            const encodedUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(encodedUrl, '_blank');
+        }
+
+        /* 9. CARROSSEL DE BANNERS */
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        document.getElementById('nextSlide').onclick = () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        };
+
+        document.getElementById('prevSlide').onclick = () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        };
+
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Renderização Inicial
+        renderProducts(products);
+    </script>
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_code)
+
+print("Arquivo index.html gerado com sucesso!")
