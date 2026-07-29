@@ -34,6 +34,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -48,7 +49,7 @@
         }
 
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
             background: var(--bg-main);
@@ -61,7 +62,7 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         /* ==========================================
@@ -73,7 +74,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(10, 10, 12, 0.92);
+            background: rgba(10, 10, 12, 0.95);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border-color);
             transition: var(--transition);
@@ -83,32 +84,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 95px;
+            height: 75px;
         }
 
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
 
         .logo-img {
-            height: 65px;
+            height: 50px;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 0 8px rgba(245, 176, 0, 0.4));
         }
 
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
         .logo-text h1 {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: #fff;
             line-height: 1;
         }
@@ -118,116 +114,83 @@
         }
 
         .logo-text span.sub {
-            font-size: 0.65rem;
-            letter-spacing: 4px;
+            font-size: 0.55rem;
+            letter-spacing: 3px;
             color: var(--text-muted);
-            margin-top: 3px;
+            display: block;
+            margin-top: 2px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
         }
 
         nav a {
             color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             transition: var(--transition);
-            position: relative;
         }
 
         nav a:hover, nav a.active {
             color: var(--gold-primary);
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: var(--gold-gradient);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .btn-social-header {
             background: rgba(245, 176, 0, 0.1);
             border: 1px solid var(--border-color);
             color: #fff;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 20px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: var(--transition);
+            gap: 6px;
         }
 
         .btn-social-header i {
-            font-size: 1.1rem;
+            font-size: 1rem;
             background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .btn-social-header:hover {
-            background: var(--gold-primary);
-            color: #000;
-            border-color: var(--gold-primary);
-        }
-
-        .btn-social-header:hover i {
-            -webkit-text-fill-color: #000;
         }
 
         .cart-icon-btn {
             background: rgba(245, 176, 0, 0.1);
             border: 1px solid var(--border-color);
             color: var(--gold-primary);
-            width: 48px;
-            height: 48px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             position: relative;
-            transition: var(--transition);
-        }
-
-        .cart-icon-btn:hover {
-            background: var(--gold-primary);
-            color: #000;
-            box-shadow: 0 0 15px rgba(245, 176, 0, 0.5);
         }
 
         .cart-count {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: -4px;
+            right: -4px;
             background: #ff3b3b;
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -238,9 +201,9 @@
            3. HERO CARROSSEL
            ========================================== */
         .hero {
-            margin-top: 95px;
+            margin-top: 75px;
             position: relative;
-            height: 550px;
+            height: 420px;
             overflow: hidden;
         }
 
@@ -258,62 +221,50 @@
             background-position: center;
         }
 
-        .slide.active {
-            opacity: 1;
-        }
+        .slide.active { opacity: 1; }
 
         .slide-1 {
-            background-image: linear-gradient(90deg, rgba(10,10,12,0.95) 25%, rgba(10,10,12,0.5) 100%), url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(180deg, rgba(10,10,12,0.7) 0%, rgba(10,10,12,0.95) 100%), url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1920&q=80');
         }
 
         .slide-2 {
-            background-image: linear-gradient(90deg, rgba(10,10,12,0.95) 25%, rgba(10,10,12,0.5) 100%), url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(180deg, rgba(10,10,12,0.7) 0%, rgba(10,10,12,0.95) 100%), url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1920&q=80');
         }
 
-        .hero-caption {
-            max-width: 650px;
-            transform: translateY(30px);
-            transition: transform 0.8s ease;
-        }
-
-        .slide.active .hero-caption {
-            transform: translateY(0);
-        }
+        .hero-caption { max-width: 600px; }
 
         .tag-highlight {
             background: var(--gold-gradient);
             color: #000;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 800;
-            padding: 6px 16px;
+            padding: 4px 12px;
             border-radius: 20px;
             display: inline-block;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         .hero h2 {
-            font-size: 3.2rem;
-            line-height: 1.1;
+            font-size: 2rem;
+            line-height: 1.15;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        .hero h2 span {
-            color: var(--gold-primary);
-        }
+        .hero h2 span { color: var(--gold-primary); }
 
         .hero p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
         }
 
         .btn-gold {
             background: var(--gold-gradient);
             color: #000;
             font-weight: 800;
-            padding: 15px 35px;
+            padding: 12px 28px;
             border: none;
             border-radius: 30px;
             cursor: pointer;
@@ -322,20 +273,17 @@
             transition: var(--transition);
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 5px 20px rgba(245, 176, 0, 0.3);
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(245, 176, 0, 0.6);
+            font-size: 0.85rem;
+            box-shadow: 0 5px 15px rgba(245, 176, 0, 0.3);
+            text-align: center;
         }
 
         .slider-controls {
             position: absolute;
-            bottom: 20px;
-            right: 50px;
+            bottom: 15px;
+            right: 20px;
             display: flex;
-            gap: 10px;
+            gap: 8px;
             z-index: 10;
         }
 
@@ -343,16 +291,10 @@
             background: rgba(255,255,255,0.1);
             border: 1px solid var(--border-color);
             color: #fff;
-            width: 45px;
-            height: 45px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .slider-btn:hover {
-            background: var(--gold-primary);
-            color: #000;
         }
 
         /* ==========================================
@@ -362,132 +304,131 @@
             background: #0f1015;
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
-            padding: 30px 0;
+            padding: 20px 0;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
         }
 
         .feature-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 15px;
+            gap: 12px;
+            padding: 12px;
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .feature-item i {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--gold-primary);
         }
 
-        .feature-item h4 {
-            font-size: 0.95rem;
-            color: #fff;
-        }
-
-        .feature-item p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        .feature-item h4 { font-size: 0.85rem; color: #fff; }
+        .feature-item p { font-size: 0.75rem; color: var(--text-muted); }
 
         /* ==========================================
            5. FILTRAGEM & PRODUTOS
            ========================================== */
-        .shop-section {
-            padding: 80px 0;
-        }
+        .shop-section { padding: 40px 0; }
 
         .section-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-        }
+        .section-header h2 { font-size: 1.8rem; letter-spacing: 1px; }
+        .section-header p { color: var(--text-muted); font-size: 0.85rem; }
 
         .filter-buttons {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 40px;
+            justify-content: flex-start;
+            gap: 8px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
         }
+
+        .filter-buttons::-webkit-scrollbar { display: none; }
 
         .filter-btn {
             background: var(--bg-card);
             color: var(--text-main);
             border: 1px solid var(--border-color);
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 8px 18px;
+            border-radius: 20px;
             font-weight: 600;
+            font-size: 0.8rem;
             cursor: pointer;
-            transition: var(--transition);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .filter-btn:hover, .filter-btn.active {
+        .filter-btn.active {
             background: var(--gold-gradient);
             color: #000;
-            box-shadow: 0 0 15px rgba(245, 176, 0, 0.4);
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
         }
 
         .product-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 12px;
             position: relative;
-            transition: var(--transition);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: var(--transition);
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--gold-primary);
-            box-shadow: var(--shadow-gold);
+            border-color: var(--border-color);
+            transform: translateY(-3px);
             background: var(--bg-card-hover);
         }
 
         .product-badge {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 8px;
+            left: 8px;
             background: #e63946;
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 10px;
+            padding: 3px 6px;
+            border-radius: 6px;
             z-index: 2;
         }
 
         .product-img-wrap {
             width: 100%;
-            height: 200px;
+            height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             cursor: pointer;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            padding: 10px;
             overflow: hidden;
         }
 
@@ -495,7 +436,7 @@
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
-            transition: var(--transition);
+            transition: transform 0.4s ease;
         }
 
         .product-card:hover .product-img-wrap img {
@@ -503,149 +444,84 @@
         }
 
         .product-category {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             color: var(--gold-primary);
             text-transform: uppercase;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .product-title {
-            font-size: 1.1rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             cursor: pointer;
-            line-height: 1.3;
-        }
-
-        .product-title:hover {
-            color: var(--gold-primary);
-        }
-
-        .product-rating {
-            color: var(--gold-primary);
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-        }
-
-        /* Calculadora de Frete nos Cards */
-        .shipping-calc-box {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .shipping-calc-box label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .shipping-input-group {
-            display: flex;
-            gap: 6px;
-        }
-
-        .shipping-input-group input {
-            flex: 1;
-            background: #000;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: #fff;
-            padding: 6px 10px;
-            font-size: 0.8rem;
-            outline: none;
-        }
-
-        .shipping-input-group button {
-            background: var(--gold-primary);
-            color: #000;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .shipping-input-group button:hover {
-            background: #fff;
-        }
-
-        .shipping-result {
-            font-size: 0.75rem;
-            margin-top: 6px;
-            font-weight: 600;
-        }
-
-        .shipping-result.free {
-            color: #25d366;
-        }
-
-        .shipping-result.paid {
-            color: var(--gold-light);
+            line-height: 1.2;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.4em;
         }
 
         .price-box {
             display: flex;
             align-items: baseline;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 6px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
 
         .price-old {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-decoration: line-through;
         }
 
         .price-current {
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: #fff;
         }
 
         .qty-and-cart {
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        @media (min-width: 480px) {
+            .qty-and-cart { flex-direction: row; }
         }
 
         .qty-selector {
             display: flex;
             align-items: center;
+            justify-content: center;
             background: rgba(0,0,0,0.3);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
+            border-radius: 6px;
+            height: 34px;
         }
 
         .qty-btn {
             background: none;
             border: none;
             color: var(--text-main);
-            width: 30px;
-            height: 38px;
+            width: 28px;
+            height: 100%;
             cursor: pointer;
             font-weight: bold;
-            transition: var(--transition);
-        }
-
-        .qty-btn:hover {
-            background: var(--gold-primary);
-            color: #000;
         }
 
         .qty-input {
-            width: 35px;
+            width: 25px;
             text-align: center;
             background: transparent;
             border: none;
             color: #fff;
             font-weight: 600;
+            font-size: 0.8rem;
         }
 
         .btn-add-cart {
@@ -653,27 +529,28 @@
             background: transparent;
             border: 1px solid var(--gold-primary);
             color: var(--gold-primary);
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 700;
+            font-size: 0.75rem;
+            height: 34px;
             cursor: pointer;
-            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
+            transition: var(--transition);
         }
 
-        .btn-add-cart:hover {
+        .btn-add-cart:active, .btn-add-cart:hover {
             background: var(--gold-gradient);
             color: #000;
-            box-shadow: 0 0 10px rgba(245, 176, 0, 0.4);
         }
 
         /* ==========================================
-           6. SEÇÃO SOBRE NÓS
+           6. SOBRE NÓS
            ========================================== */
         .about-section {
-            padding: 80px 0;
+            padding: 50px 0;
             background: #0f1015;
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
@@ -681,68 +558,284 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid { grid-template-columns: 1fr 1fr; }
         }
 
         .about-img {
-            position: relative;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-gold);
         }
 
-        .about-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .about-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-
-        .about-content h2 span {
-            color: var(--gold-primary);
-        }
+        .about-img img { width: 100%; display: block; }
+        .about-content h2 { font-size: 1.8rem; margin-bottom: 15px; }
 
         .about-content p {
             color: var(--text-muted);
-            margin-bottom: 15px;
-            line-height: 1.7;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
 
         .about-highlights {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .highlight-item {
             background: rgba(255,255,255,0.02);
-            padding: 15px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 8px;
             border-left: 3px solid var(--gold-primary);
         }
 
-        .highlight-item h4 {
-            font-size: 0.95rem;
-            color: #fff;
-            margin-bottom: 5px;
+        .highlight-item h4 { font-size: 0.85rem; color: #fff; }
+        .highlight-item p { font-size: 0.75rem; margin-bottom: 0; }
+
+        /* ==========================================
+           7. PÁGINA DO PRODUTO EM TELA CHEIA
+           ========================================== */
+        .product-page-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-main);
+            z-index: 5000;
+            overflow-y: auto;
+            display: none;
+            flex-direction: column;
         }
 
-        .highlight-item p {
+        .product-page-view.active { display: flex; }
+
+        .page-nav-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .btn-back-page {
+            background: rgba(245, 176, 0, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--gold-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .page-nav-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-page-content {
+            padding: 20px 15px 40px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        .page-img-container {
+            background: radial-gradient(circle, rgba(30,32,40,1) 0%, rgba(18,19,24,1) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .page-img-container img {
+            max-width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+        }
+
+        .stock-tag-delivery {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37, 211, 102, 0.12);
+            border: 1px solid #25d366;
+            color: #25d366;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 12px rgba(37, 211, 102, 0.2);
+        }
+
+        .stock-tag-delivery i {
+            font-size: 0.85rem;
+        }
+
+        .page-details-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .page-details-box .product-category { font-size: 0.75rem; }
+
+        .page-details-box h2 {
+            font-size: 1.5rem;
+            margin: 6px 0 12px 0;
+            line-height: 1.25;
+        }
+
+        .page-details-box .price-current {
+            font-size: 2rem;
+            color: var(--gold-primary);
+        }
+
+        .page-details-box .price-old { font-size: 1.1rem; }
+
+        .page-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 15px 0 20px 0;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .flavor-select-page { margin-bottom: 20px; }
+
+        .flavor-select-page label {
+            display: block;
             font-size: 0.8rem;
-            margin-bottom: 0;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--gold-primary);
+        }
+
+        .flavor-select-page select {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 10px;
+            outline: none;
+            font-size: 0.85rem;
+        }
+
+        .page-shipping-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .page-shipping-box label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .page-shipping-input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-shipping-input-group input {
+            flex: 1;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            color: #fff;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .page-shipping-input-group button {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .shipping-result {
+            font-size: 0.8rem;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .shipping-result.free { color: #25d366; }
+        .shipping-result.paid { color: var(--gold-light); }
+
+        .related-products-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .related-products-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        @media (min-width: 600px) {
+            .related-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
         }
 
         /* ==========================================
-           7. DRAWER DO CARRINHO
+           8. DRAWER DO CARRINHO
            ========================================== */
         .cart-overlay {
             position: fixed;
@@ -752,50 +845,40 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
-            z-index: 2000;
+            z-index: 6000;
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
         }
 
-        .cart-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .cart-overlay.active { opacity: 1; visibility: visible; }
 
         .cart-drawer {
             position: fixed;
             top: 0;
-            right: -450px;
+            right: -100%;
             width: 100%;
-            max-width: 450px;
+            max-width: 420px;
             height: 100%;
             background: var(--bg-card);
-            z-index: 2001;
+            z-index: 6001;
             box-shadow: -10px 0 30px rgba(0,0,0,0.8);
             transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
         }
 
-        .cart-drawer.active {
-            right: 0;
-        }
+        .cart-drawer.active { right: 0; }
 
         .cart-header {
-            padding: 25px;
+            padding: 20px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .cart-header h3 {
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .cart-header h3 { font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
 
         .close-cart {
             background: none;
@@ -803,63 +886,42 @@
             color: var(--text-muted);
             font-size: 1.5rem;
             cursor: pointer;
-            transition: var(--transition);
         }
 
-        .close-cart:hover {
-            color: var(--gold-primary);
-        }
-
-        .cart-body {
-            padding: 25px;
-            flex: 1;
-            overflow-y: auto;
-        }
+        .cart-body { padding: 20px; flex: 1; overflow-y: auto; }
 
         .cart-item {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             align-items: center;
         }
 
         .cart-item img {
-            width: 65px;
-            height: 65px;
+            width: 55px;
+            height: 55px;
             object-fit: contain;
             background: rgba(0,0,0,0.2);
             border-radius: 8px;
         }
 
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .cart-item-price {
-            color: var(--gold-primary);
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
+        .cart-item-info { flex: 1; }
+        .cart-item-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+        .cart-item-price { color: var(--gold-primary); font-weight: 700; font-size: 0.8rem; }
 
         .remove-item {
             color: #ff4757;
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             padding: 5px;
         }
 
         .cart-footer {
-            padding: 25px;
+            padding: 20px;
             border-top: 1px solid var(--border-color);
             background: rgba(0,0,0,0.3);
         }
@@ -867,14 +929,14 @@
         .cart-total-box {
             display: flex;
             justify-content: space-between;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .btn-checkout {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background: #25d366;
             color: white;
             border: none;
@@ -886,119 +948,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: var(--transition);
-        }
-
-        .btn-checkout:hover {
-            background: #1eb954;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-        }
-
-        /* ==========================================
-           8. MODAL PRODUTO DETALHADO
-           ========================================== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            max-width: 800px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.8rem;
-            cursor: pointer;
-            z-index: 5;
-        }
-
-        .modal-img {
-            background: rgba(0,0,0,0.3);
-            padding: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-img img {
-            max-width: 100%;
-            max-height: 280px;
-            object-fit: contain;
-        }
-
-        .modal-details {
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .modal-details h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .modal-details p.desc {
-            color: var(--text-muted);
+            gap: 8px;
             font-size: 0.85rem;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .flavor-select {
-            margin-bottom: 15px;
-        }
-
-        .flavor-select label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: var(--gold-primary);
-        }
-
-        .flavor-select select {
-            width: 100%;
-            padding: 10px;
-            background: #000;
-            border: 1px solid var(--border-color);
-            color: #fff;
-            border-radius: 8px;
-            outline: none;
         }
 
         /* ==========================================
@@ -1007,81 +958,54 @@
         footer {
             background: #050507;
             border-top: 1px solid var(--border-color);
-            padding: 60px 0 20px 0;
-            margin-top: 50px;
+            padding: 40px 0 20px 0;
+            margin-top: 30px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 600px) {
+            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
         }
 
         .footer-col h4 {
             color: var(--gold-primary);
-            margin-bottom: 20px;
-            font-size: 1rem;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
         }
 
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-col ul a:hover {
-            color: #fff;
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
 
         .social-btn-insta {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: white;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
-            transition: var(--transition);
-        }
-
-        .social-btn-insta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(220, 39, 67, 0.6);
+            gap: 8px;
+            font-size: 0.85rem;
         }
 
         .copyright {
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 20px;
+            padding-top: 15px;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
         }
 
-        @media (max-width: 900px) {
-            .about-grid { grid-template-columns: 1fr; }
-            .modal-container { grid-template-columns: 1fr; }
-            .modal-img { padding: 20px; }
-            .modal-details { padding: 25px; }
+        @media (max-width: 768px) {
             nav { display: none; }
-            .hero h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -1108,8 +1032,8 @@
             </nav>
 
             <div class="header-actions">
-                <a href="https://www.instagram.com/powerkingsuplementos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="btn-social-header">
-                    <i class="fa-brands fa-instagram"></i> Instagram
+                <a href="https://www.instagram.com/powerkingsuplementos" target="_blank" class="btn-social-header">
+                    <i class="fa-brands fa-instagram"></i>
                 </a>
                 <button class="cart-icon-btn" id="openCartBtn">
                     <i class="fa-solid fa-cart-shopping"></i>
@@ -1126,7 +1050,7 @@
                 <div class="hero-caption">
                     <span class="tag-highlight"><i class="fa-solid fa-crown"></i> SUPLEMENTAÇÃO DE ELITE</span>
                     <h2>DESPERTE O <span>REI</span> DENTRO DE VOCÊ</h2>
-                    <p>Fórmulas de altíssima pureza projetadas para quem não aceita nada além do topo do pódio.</p>
+                    <p>Fórmulas de altíssima pureza projetadas para o topo do pódio.</p>
                     <a href="#produtos" class="btn-gold">Explorar Arsenal <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1136,7 +1060,7 @@
                 <div class="hero-caption">
                     <span class="tag-highlight"><i class="fa-solid fa-truck-fast"></i> PAULÍNIA & REGIÃO</span>
                     <h2>FRETE GRÁTIS EM <span>PAULÍNIA</span></h2>
-                    <p>Entregamos seus suplementos com rapidez total. Calcule o frete direto na página do produto.</p>
+                    <p>Entregamos seus suplementos com rapidez total na sua porta.</p>
                     <a href="#produtos" class="btn-gold">Comprar Agora <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1173,13 +1097,6 @@
                         <p>Atendimento direto e prático</p>
                     </div>
                 </div>
-                <div class="feature-item">
-                    <i class="fa-solid fa-bolt"></i>
-                    <div>
-                        <h4>Envio Imediato</h4>
-                        <p>Produtos à pronta entrega</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1189,7 +1106,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>ARSENAL DE <span>SUPLEMENTOS</span></h2>
-                <p>Navegue pelas categorias e escolha a melhor nutrição para a sua meta</p>
+                <p>Navegue pelas categorias e escolha a melhor nutrição</p>
             </div>
 
             <!-- Botões de Filtragem -->
@@ -1203,7 +1120,8 @@
 
             <!-- Grid de Produtos -->
             <div class="products-grid" id="productsGrid">
-                <!-- Produtos carregados em tempo real via Firebase -->
+                <!-- Carregando produtos... -->
+                <p style="text-align:center; color:var(--text-muted); grid-column: 1/-1; padding: 30px 0;">Carregando suplementos...</p>
             </div>
         </div>
     </section>
@@ -1217,29 +1135,101 @@
                 </div>
                 <div class="about-content">
                     <h2>SOBRE A <span>POWER KING</span></h2>
-                    <p>A <strong>Power King Suplementos</strong> nasceu com o objetivo firme de transformar o mercado de nutrição esportiva, oferecendo apenas produtos de altíssima performance, com procedência garantida e resultados reais.</p>
-                    <p>Nossa missão é abastecer atletas, marombeiros e entusiastas do fitness com a verdadeira suplementação de elite, unindo atendimento personalizado, suporte técnico e entregas ultra rápidas.</p>
+                    <p>A <strong>Power King Suplementos</strong> nasceu para transformar o mercado de nutrição esportiva, oferecendo apenas produtos de altíssima performance com procedência garantida.</p>
                     
                     <div class="about-highlights">
                         <div class="highlight-item">
                             <h4>Compromisso Real</h4>
-                            <p>Garantia de matérias-primas importadas e laudos de qualidade.</p>
+                            <p>Garantia de pureza e laudo de qualidade.</p>
                         </div>
                         <div class="highlight-item">
                             <h4>Atendimento Rei</h4>
-                            <p>Suporte direto no WhatsApp para tirar todas as dúvidas.</p>
+                            <p>Suporte direto no WhatsApp.</p>
                         </div>
                     </div>
 
-                    <div style="margin-top: 30px;">
+                    <div style="margin-top: 20px;">
                         <a href="https://wa.me/5519993665330?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida!" target="_blank" class="btn-gold">
-                            <i class="fa-brands fa-whatsapp"></i> Falar com um Especialista
+                            <i class="fa-brands fa-whatsapp"></i> Falar com Especialista
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ================= PÁGINA DO PRODUTO EM TELA CHEIA ================= -->
+    <div class="product-page-view" id="productPageView">
+        <div class="page-nav-bar">
+            <button class="btn-back-page" onclick="closeProductPage()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <span class="page-nav-title" id="pageNavTitle">Detalhes do Produto</span>
+        </div>
+
+        <div class="product-page-content">
+            <div class="page-img-container">
+                <img id="pageImg" src="" alt="Produto">
+            </div>
+
+            <div class="page-details-box">
+                <div>
+                    <span class="stock-tag-delivery">
+                        <i class="fa-solid fa-circle-check"></i> Pronta Entrega - Envios Rápidos
+                    </span>
+                </div>
+
+                <span class="product-category" id="pageCategory">Categoria</span>
+                <h2 id="pageTitle">Nome do Produto</h2>
+                
+                <div class="price-box">
+                    <span class="price-old" id="pagePriceOld">R$ 0,00</span>
+                    <span class="price-current" id="pagePrice">R$ 0,00</span>
+                </div>
+
+                <div class="page-shipping-box">
+                    <label><i class="fa-solid fa-truck-fast" style="color:var(--gold-primary)"></i> Simular Frete para seu CEP:</label>
+                    <div class="page-shipping-input-group">
+                        <input type="text" id="pageCepInput" placeholder="Digite seu CEP ou Cidade">
+                        <button onclick="calculatePageShipping()">CALCULAR</button>
+                    </div>
+                    <div class="shipping-result" id="pageShipResult"></div>
+                </div>
+
+                <div class="flavor-select-page">
+                    <label><i class="fa-solid fa-utensils"></i> Selecione o Sabor:</label>
+                    <select id="pageFlavor">
+                        <option>Chocolate Suíço</option>
+                        <option>Baunilha Gourmet</option>
+                        <option>Morango Silvestre</option>
+                        <option>Cookies & Cream</option>
+                        <option>Sem Sabor / Natural</option>
+                    </select>
+                </div>
+
+                <p class="page-desc" id="pageDesc">Descrição completa do produto aqui...</p>
+
+                <button class="btn-gold" id="pageAddCartBtn" style="width:100%; padding: 16px; font-size: 1rem;">
+                    <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
+                </button>
+            </div>
+
+            <div class="related-products-section">
+                <h3><i class="fa-solid fa-fire" style="color:var(--gold-primary)"></i> Você Também Pode Gostar</h3>
+                <div class="related-grid" id="relatedProductsGrid">
+                    <!-- Sugestões dinâmicas -->
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="copyright" style="border:none; padding-top:0;">
+                    <p>&copy; 2026 POWER KING SUPLEMENTOS. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- ================= DRAWER DO CARRINHO ================= -->
     <div class="cart-overlay" id="cartOverlay"></div>
@@ -1249,7 +1239,7 @@
             <button class="close-cart" id="closeCartBtn">&times;</button>
         </div>
         <div class="cart-body" id="cartItems">
-            <!-- Itens do Carrinho via JS -->
+            <!-- Itens via JS -->
         </div>
         <div class="cart-footer">
             <div class="cart-total-box">
@@ -1262,88 +1252,44 @@
         </div>
     </div>
 
-    <!-- ================= MODAL DETALHES ================= -->
-    <div class="modal-overlay" id="productModal">
-        <div class="modal-container">
-            <button class="close-modal" id="closeModalBtn">&times;</button>
-            <div class="modal-img">
-                <img id="modalImg" src="" alt="">
-            </div>
-            <div class="modal-details">
-                <span class="product-category" id="modalCategory">Categoria</span>
-                <h3 id="modalTitle">Nome do Produto</h3>
-                <p class="desc" id="modalDesc">Descrição técnica do produto...</p>
-                
-                <div class="flavor-select">
-                    <label>Escolha o Sabor:</label>
-                    <select id="modalFlavor">
-                        <option>Chocolate Suíço</option>
-                        <option>Baunilha Gourmet</option>
-                        <option>Morango Silvestre</option>
-                        <option>Cookies & Cream</option>
-                        <option>Natural / Sem Sabor</option>
-                    </select>
-                </div>
-
-                <div class="price-box">
-                    <span class="price-current" id="modalPrice">R$ 0,00</span>
-                </div>
-
-                <button class="btn-gold" id="modalAddCartBtn" style="width:100%">Adicionar ao Carrinho</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= FOOTER ================= -->
+    <!-- ================= FOOTER PRINCIPAL ================= -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <a href="#home" class="logo-area" style="margin-bottom:15px;">
-                        <img src="logo.jpg" alt="Power King" class="logo-img" style="height:50px;" onerror="this.onerror=null; this.src='logo.png';">
+                    <a href="#home" class="logo-area" style="margin-bottom:12px;">
+                        <img src="logo.jpg" alt="Power King" class="logo-img" style="height:40px;" onerror="this.onerror=null; this.src='logo.png';">
                         <div class="logo-text">
                             <h1>POWER <span>KING</span></h1>
                         </div>
                     </a>
-                    <p style="color:var(--text-muted); font-size:0.85rem;">O ápice em suplementação esportiva. Sinta o verdadeiro poder da nutrição de alta performance.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Navegação</h4>
-                    <ul>
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#produtos">Produtos</a></li>
-                        <li><a href="#categorias">Categorias</a></li>
-                        <li><a href="#sobre">Sobre Nós</a></li>
-                    </ul>
+                    <p style="color:var(--text-muted); font-size:0.8rem;">O ápice em suplementação esportiva. Sinta o verdadeiro poder da nutrição de alta performance.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Atendimento</h4>
                     <ul>
                         <li><a href="https://wa.me/5519993665330" target="_blank"><i class="fa-brands fa-whatsapp"></i> (19) 99366-5330</a></li>
                         <li><a href="#">Paulínia - SP</a></li>
-                        <li><a href="#">Segunda a Sábado: 8h às 20h</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Rede Oficial</h4>
-                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:15px;">Siga nosso perfil e fique por dentro das novidades e promoções exclusivas!</p>
-                    <a href="https://www.instagram.com/powerkingsuplementos?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn-insta">
-                        <i class="fa-brands fa-instagram" style="font-size:1.3rem;"></i> @powerkingsuplementos
+                    <a href="https://www.instagram.com/powerkingsuplementos" target="_blank" class="social-btn-insta">
+                        <i class="fa-brands fa-instagram" style="font-size:1.1rem;"></i> @powerkingsuplementos
                     </a>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2026 POWER KING SUPLEMENTOS. Todos os direitos reservados. Frete Grátis em Paulínia-SP.</p>
+                <p>&copy; 2026 POWER KING SUPLEMENTOS. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- ================= JAVASCRIPT + CONEXÃO FIREBASE ================= -->
+    <!-- ================= JAVASCRIPT + FIREBASE ================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // Configuração original do seu Firebase
         const firebaseConfig = { 
             apiKey: "AIzaSyAqbsFZB0JT89x7Nio70x0QkAPxqxz3SK4", 
             authDomain: "powerkingsuplementos.firebaseapp.com", 
@@ -1361,41 +1307,51 @@
         let products = [];
         let currentFilter = 'all';
 
-        // Escuta em tempo real as atualizações do seu painel ADM
+        const productsGrid = document.getElementById('productsGrid');
+
+        // Escuta o Firebase com tratamento flexível de dados
         onValue(produtosRef, (snapshot) => {
             const data = snapshot.val();
             products = [];
 
             if (data) {
-                Object.keys(data).forEach(key => {
-                    const item = data[key];
-                    const numPrice = parseFloat(item.preco) || 0;
-                    
-                    products.push({
-                        id: key,
-                        name: item.nome || "Produto sem nome",
-                        category: item.categoria || "massa",
-                        categoryLabel: item.categoria ? item.categoria.toUpperCase() : "SUPLEMENTOS",
-                        price: numPrice,
-                        oldPrice: numPrice > 0 ? numPrice * 1.2 : 0, // Cálculo visual de desconto
-                        rating: 5,
-                        image: item.imagem || 'https://via.placeholder.com/300?text=Sem+Imagem',
-                        badge: item.badge || "DESTAQUE",
-                        desc: item.descricao || "Suplemento de alta qualidade para otimização dos seus resultados."
+                if (Array.isArray(data)) {
+                    data.forEach((item, index) => {
+                        if (item) parseAndAddProduct(index.toString(), item);
                     });
-                });
+                } else {
+                    Object.keys(data).forEach(key => {
+                        if (data[key]) parseAndAddProduct(key, data[key]);
+                    });
+                }
             }
 
             aplicarFiltro();
+        }, (error) => {
+            console.error("Erro ao carregar do Firebase: ", error);
+            productsGrid.innerHTML = '<p style="text-align:center; color:#ff4757; grid-column: 1/-1; padding: 30px 0;">Erro ao carregar produtos. Tente recarregar a página.</p>';
         });
 
-        const productsGrid = document.getElementById('productsGrid');
+        function parseAndAddProduct(id, item) {
+            const numPrice = parseFloat(item.preco) || 0;
+            products.push({
+                id: id,
+                name: item.nome || "Produto sem nome",
+                category: (item.categoria || "massa").toLowerCase().trim(),
+                categoryLabel: item.categoria ? item.categoria.toUpperCase() : "SUPLEMENTOS",
+                price: numPrice,
+                oldPrice: item.precoAntigo ? parseFloat(item.precoAntigo) : (numPrice > 0 ? numPrice * 1.2 : 0),
+                image: item.imagem || 'https://via.placeholder.com/300?text=Sem+Imagem',
+                badge: item.badge || "DESTAQUE",
+                desc: item.descricao || "Suplemento de alta qualidade projetado para acelerar seus ganhos e potencializar a sua rotina de treinos."
+            });
+        }
 
         function renderProducts(items) {
             productsGrid.innerHTML = '';
 
             if (items.length === 0) {
-                productsGrid.innerHTML = '<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1; padding: 40px 0;">Nenhum produto cadastrado no painel.</p>';
+                productsGrid.innerHTML = '<p style="text-align:center; color:var(--text-muted); grid-column: 1/-1; padding: 30px 0;">Nenhum produto cadastrado nesta categoria.</p>';
                 return;
             }
 
@@ -1404,40 +1360,26 @@
                 card.className = 'product-card';
                 card.innerHTML = `
                     <span class="product-badge">${product.badge}</span>
-                    <div class="product-img-wrap" onclick="openProductModal('${product.id}')">
+                    <div class="product-img-wrap" onclick="openProductPage('${product.id}')">
                         <img src="${product.image}" alt="${product.name}">
                     </div>
                     <span class="product-category">${product.categoryLabel}</span>
-                    <h3 class="product-title" onclick="openProductModal('${product.id}')">${product.name}</h3>
-                    <div class="product-rating">
-                        ${'<i class="fa-solid fa-star"></i>'.repeat(product.rating)}
-                    </div>
-                    
-                    <!-- CALCULADORA DE FRETE -->
-                    <div class="shipping-calc-box">
-                        <label><i class="fa-solid fa-truck"></i> Calcule o Frete:</label>
-                        <div class="shipping-input-group">
-                            <input type="text" id="cep-${product.id}" placeholder="Digite CEP ou Cidade" maxlength="25">
-                            <button onclick="calculateShipping('${product.id}')">OK</button>
-                        </div>
-                        <div class="shipping-result" id="ship-result-${product.id}"></div>
+                    <h3 class="product-title" onclick="openProductPage('${product.id}')">${product.name}</h3>
+
+                    <div class="price-box">
+                        <span class="price-old">R$ ${product.oldPrice.toFixed(2)}</span>
+                        <span class="price-current">R$ ${product.price.toFixed(2)}</span>
                     </div>
 
-                    <div class="product-bottom">
-                        <div class="price-box">
-                            <span class="price-old">R$ ${product.oldPrice.toFixed(2)}</span>
-                            <span class="price-current">R$ ${product.price.toFixed(2)}</span>
+                    <div class="qty-and-cart">
+                        <div class="qty-selector">
+                            <button class="qty-btn" onclick="adjustQty('${product.id}', -1)">-</button>
+                            <input type="text" class="qty-input" id="qty-${product.id}" value="1" readonly>
+                            <button class="qty-btn" onclick="adjustQty('${product.id}', 1)">+</button>
                         </div>
-                        <div class="qty-and-cart">
-                            <div class="qty-selector">
-                                <button class="qty-btn" onclick="adjustQty('${product.id}', -1)">-</button>
-                                <input type="text" class="qty-input" id="qty-${product.id}" value="1" readonly>
-                                <button class="qty-btn" onclick="adjustQty('${product.id}', 1)">+</button>
-                            </div>
-                            <button class="btn-add-cart" onclick="addToCart('${product.id}')">
-                                <i class="fa-solid fa-cart-plus"></i> Comprar
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('${product.id}')">
+                            <i class="fa-solid fa-cart-plus"></i> Comprar
+                        </button>
                     </div>
                 `;
                 productsGrid.appendChild(card);
@@ -1448,19 +1390,89 @@
             if (currentFilter === 'all') {
                 renderProducts(products);
             } else {
-                const filtered = products.filter(p => p.category.toLowerCase() === currentFilter.toLowerCase());
+                const filtered = products.filter(p => p.category.includes(currentFilter.toLowerCase()));
                 renderProducts(filtered);
             }
         }
 
-        /* LÓGICA DA CALCULADORA DE FRETE */
-        window.calculateShipping = (productId) => {
-            const input = document.getElementById(`cep-${productId}`).value.trim().toLowerCase();
-            const resultDiv = document.getElementById(`ship-result-${productId}`);
+        /* FILTROS */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                aplicarFiltro();
+            });
+        });
+
+        /* QUANTIDADE */
+        window.adjustQty = (productId, change) => {
+            const qtyInput = document.getElementById(`qty-${productId}`);
+            if(!qtyInput) return;
+            let currentQty = parseInt(qtyInput.value) || 1;
+            currentQty += change;
+            if (currentQty < 1) currentQty = 1;
+            qtyInput.value = currentQty;
+        };
+
+        /* PÁGINA DO PRODUTO */
+        const productPageView = document.getElementById('productPageView');
+        let currentModalProductId = null;
+
+        window.openProductPage = (productId) => {
+            const product = products.find(p => p.id === productId);
+            if(!product) return;
+
+            currentModalProductId = productId;
+
+            document.getElementById('pageNavTitle').innerText = product.name;
+            document.getElementById('pageImg').src = product.image;
+            document.getElementById('pageCategory').innerText = product.categoryLabel;
+            document.getElementById('pageTitle').innerText = product.name;
+            document.getElementById('pageDesc').innerText = product.desc;
+            document.getElementById('pagePrice').innerText = `R$ ${product.price.toFixed(2)}`;
+            document.getElementById('pagePriceOld').innerText = `R$ ${product.oldPrice.toFixed(2)}`;
+
+            document.getElementById('pageCepInput').value = '';
+            document.getElementById('pageShipResult').innerText = '';
+
+            renderRelatedProducts(productId);
+
+            productPageView.classList.add('active');
+            productPageView.scrollTop = 0;
+            document.body.style.overflow = 'hidden';
+
+            history.pushState({ page: 'product' }, product.name);
+        };
+
+        window.closeProductPage = () => {
+            productPageView.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        window.onpopstate = () => {
+            if (productPageView.classList.contains('active')) {
+                productPageView.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        document.getElementById('pageAddCartBtn').onclick = () => {
+            if (currentModalProductId) {
+                window.addToCart(currentModalProductId, 1);
+                closeProductPage();
+            }
+        };
+
+        /* FRETE */
+        window.calculatePageShipping = () => {
+            const input = document.getElementById('pageCepInput').value.trim().toLowerCase();
+            const resultDiv = document.getElementById('pageShipResult');
 
             if (!input) {
                 resultDiv.className = "shipping-result";
-                resultDiv.innerText = "Por favor, digite seu CEP ou cidade.";
+                resultDiv.innerText = "Por favor, informe seu CEP ou cidade.";
                 return;
             }
 
@@ -1472,39 +1484,45 @@
                 resultDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i> <strong>FRETE GRÁTIS</strong> para Paulínia!';
             } else {
                 resultDiv.className = "shipping-result paid";
-                resultDiv.innerHTML = '<i class="fa-solid fa-truck-ramp-box"></i> Frete Fixo Região: <strong>R$ 14,90</strong> (24h a 48h)';
+                resultDiv.innerHTML = 'Frete estimado para sua região: <strong>R$ 14,90</strong>';
             }
         };
 
-        /* SISTEMA DE FILTRAGEM */
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentFilter = btn.dataset.filter;
-                aplicarFiltro();
+        /* SUGESTÕES */
+        function renderRelatedProducts(currentId) {
+            const relatedContainer = document.getElementById('relatedProductsGrid');
+            relatedContainer.innerHTML = '';
+
+            const others = products.filter(p => p.id !== currentId);
+
+            if (others.length === 0) {
+                relatedContainer.innerHTML = '<p style="color:var(--text-muted); font-size:0.8rem;">Nenhum outro produto disponível no momento.</p>';
+                return;
+            }
+
+            const suggestions = others.slice(0, 4);
+
+            suggestions.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'product-card';
+                div.innerHTML = `
+                    <div class="product-img-wrap" onclick="openProductPage('${item.id}')">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <span class="product-category">${item.categoryLabel}</span>
+                    <h3 class="product-title" onclick="openProductPage('${item.id}')">${item.name}</h3>
+                    <div class="price-box">
+                        <span class="price-current">R$ ${item.price.toFixed(2)}</span>
+                    </div>
+                    <button class="btn-add-cart" onclick="openProductPage('${item.id}')">
+                        <i class="fa-solid fa-eye"></i> Ver Produto
+                    </button>
+                `;
+                relatedContainer.appendChild(div);
             });
-        });
+        }
 
-        /* NAVEGAÇÃO SUAVE */
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        /* CONTROLE DE QUANTIDADE */
-        window.adjustQty = (productId, change) => {
-            const qtyInput = document.getElementById(`qty-${productId}`);
-            let currentQty = parseInt(qtyInput.value);
-            currentQty += change;
-            if (currentQty < 1) currentQty = 1;
-            qtyInput.value = currentQty;
-        };
-
-        /* SISTEMA DO CARRINHO */
+        /* CARRINHO */
         let cart = [];
         const cartDrawer = document.getElementById('cartDrawer');
         const cartOverlay = document.getElementById('cartOverlay');
@@ -1557,7 +1575,7 @@
             let totalItems = 0;
 
             if(cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">Seu carrinho está vazio.</p>';
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:var(--text-muted); margin-top:30px; font-size: 0.85rem;">Seu carrinho está vazio.</p>';
             }
 
             cart.forEach(item => {
@@ -1583,35 +1601,7 @@
             cartTotal.innerText = `R$ ${total.toFixed(2)}`;
         }
 
-        /* MODAL DO PRODUTO */
-        const productModal = document.getElementById('productModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        let currentModalProductId = null;
-
-        window.openProductModal = (productId) => {
-            const product = products.find(p => p.id === productId);
-            if(!product) return;
-
-            currentModalProductId = productId;
-            
-            document.getElementById('modalImg').src = product.image;
-            document.getElementById('modalCategory').innerText = product.categoryLabel;
-            document.getElementById('modalTitle').innerText = product.name;
-            document.getElementById('modalDesc').innerText = product.desc;
-            document.getElementById('modalPrice').innerText = `R$ ${product.price.toFixed(2)}`;
-
-            productModal.classList.add('active');
-        };
-
-        closeModalBtn.onclick = () => productModal.classList.remove('active');
-        document.getElementById('modalAddCartBtn').onclick = () => {
-            if (currentModalProductId) {
-                window.addToCart(currentModalProductId, 1);
-                productModal.classList.remove('active');
-            }
-        };
-
-        /* CHECKOUT WHATSAPP */
+        /* CHECKOUT */
         window.checkoutWhatsApp = () => {
             if (cart.length === 0) {
                 alert('Seu carrinho está vazio!');
@@ -1635,7 +1625,7 @@
             window.open(encodedUrl, '_blank');
         };
 
-        /* CARROSSEL DE BANNERS */
+        /* BANNER */
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
 
